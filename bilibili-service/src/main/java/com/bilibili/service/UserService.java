@@ -57,4 +57,15 @@ public class UserService {
     public User getUserByPhone(String phone) {
         return userDao.getUserByPhone(phone);
     }
+
+    public String login(User user) {
+        String phone = user.getPhone();
+        if(StringUtils.isNullOrEmpty(phone)){
+            throw new ConditionException("手机号不能为空！");
+        }
+        User dbUser = this.getUserByPhone(phone);
+        if(dbUser == null){
+            throw new ConditionException("当前用户不存在！");
+        }
+    }
 }
