@@ -82,4 +82,11 @@ public class UserService {
         }
         return TokenUtil.generateToken(dbUser.getId());
     }
+
+    public User getUserInfo(Long userId) {
+        User user = userDao.getUserById(userId);
+        UserInfo userInfo = userDao.getUserInfoByUserId(userId);
+        user.setUserInfo(userInfo);
+        return user;
+    }
 }

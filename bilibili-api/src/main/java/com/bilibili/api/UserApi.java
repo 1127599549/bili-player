@@ -1,5 +1,6 @@
 package com.bilibili.api;
 
+import com.bilibili.api.support.UserSupport;
 import com.bilibili.domain.JsonResponse;
 import com.bilibili.domain.User;
 import com.bilibili.service.UserService;
@@ -14,6 +15,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserApi {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserSupport userSupport;
+
+    @GetMapping("/users")
+    public JsonResponse<User> getUserInfo(){
+        Long userId = userSupport.getCurrentUserId();
+        User user = userService.getUserInfo(userId);
+        return new JsonResponse<>(user);
+    }
 
     @GetMapping("/rsa-pks")
     public JsonResponse<String> getRsaPublicKey() {
