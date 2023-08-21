@@ -12,7 +12,7 @@ public class UserSupport {
     public Long getCurrentUserId(){
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         String token = requestAttributes.getRequest().getHeader("token");
-        long userId = TokenUtil.verifyToken(token);
+        Long userId = TokenUtil.verifyToken(token);
         if(userId < 0){
             throw new ConditionException("非法用户！");
         }

@@ -28,7 +28,7 @@ public class UserService {
         }
         User dbUser = this.getUserByPhone(phone);
         if (dbUser != null) {
-            throw new ConditionException("改手机号已经注册！");
+            throw new ConditionException("该手机号已经注册！");
         }
         Date now = new Date();
         String salt = String.valueOf(now.getTime());
@@ -77,7 +77,7 @@ public class UserService {
         }
         String salt = dbUser.getSalt();
         String md5Password = MD5Util.sign(rawPassword, salt, "UTF-8");
-        if(md5Password.equals(dbUser.getPassword())){
+        if(!md5Password.equals(dbUser.getPassword())){
             throw new ConditionException("密码错误！");
         }
         return TokenUtil.generateToken(dbUser.getId());
