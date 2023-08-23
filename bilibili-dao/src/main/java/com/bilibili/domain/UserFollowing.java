@@ -10,6 +10,16 @@ public class UserFollowing {
     private Long groupId;
     private Date createTime;
 
+    private UserInfo userInfo;
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
+
     public Long getId() {
         return id;
     }
